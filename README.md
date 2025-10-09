@@ -1,4 +1,4 @@
-# Vue Certification Notes
+# 🎓 Vue Certification Notes
 
 
 ## **Chapter 1:** Vue Essentials
