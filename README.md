@@ -13,4 +13,4 @@
 
 ## 📚 Resources
 
-[Scrimba - Learn Vue.js](https://scrimba.com/learn-vuejs-c09q9jrprp)
+- [Scrimba - Learn Vue.js](https://scrimba.com/learn-vuejs-c09q9jrprp)

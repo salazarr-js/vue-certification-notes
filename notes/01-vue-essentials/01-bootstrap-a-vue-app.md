@@ -1,17 +1,15 @@
 # 🚀 Bootstrap a Vue App
 
-## Vue SPA's
+## Vue SPAs
 
 ```bash
 npm create vue@latest
-``` 
+```
 
-> ✅ Scaffold a Vue [**Single Page Application**](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) <br/>
-> ✅ Build setup based on [**Vite**](https://vitejs.dev/) <br/>
-> ✅ Allow to use Vue [**Single-File Components**](https://vuejs.org/guide/scaling-up/sfc) (SFCs) <br/>
-> ✅ generated project are written using the [Composition API ](https://vuejs.org/guide/introduction#composition-api) `<script setup>`
-
-
+> ✅ Scaffolds a Vue [**Single Page Application**](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) <br/>
+> ✅ Build setup based on [**Vite**](https://vitejs.dev/) <br/>
+> ✅ Allows using Vue [**Single-File Components**](https://vuejs.org/guide/scaling-up/sfc) (SFCs) <br/>
+> ✅ The generated project uses the [Composition API](https://vuejs.org/guide/introduction#composition-api) via `<script setup>` <br/>
 
 ## Using Vue from CDN
 
@@ -45,9 +43,9 @@ npm create vue@latest
 </script>
 ```
 
-> ✅ no "build step" involved <br/> 
-> ❌ won't be able to use the Single-File Component (SFC) syntax <br/> 
-> ⚠️ `<script setup>` syntax requires build tools
+> ✅ No build step involved <br/>
+> ❌ Can't use Single-File Component (SFC) syntax <br/>
+> ⚠️ The `<script setup>` syntax requires build tools. <br/>
 
 
 ## The Application Instance
