@@ -1,6 +1,6 @@
-# 🚀 Bootstrap a Vue App
+# Quick Start
 
-## Vue SPAs
+## Creating a Vue Application
 
 ```bash
 npm create vue@latest
@@ -18,6 +18,7 @@ npm create vue@latest
 ```
 
 ### Using the ES Module Build + Import maps
+
 ```html
 <script type="importmap">
   {
@@ -47,22 +48,6 @@ npm create vue@latest
 > ❌ Can't use Single-File Component (SFC) syntax <br/>
 > ⚠️ The `<script setup>` syntax requires build tools. <br/>
 
+---
 
-## The Application Instance
-
-```html
-<div id="app"></div>
-```
-
-```ts
-import { createApp } from 'vue'
-
-const app = createApp(/* ROOT COMPONENT */)
-app.mount('#app')
-```
-
---- 
-
-- [Creating a vue Application](https://vuejs.org/guide/quick-start.html#creating-a-vue-application)
-- [Using Vue from CDN](https://vuejs.org/guide/quick-start.html#using-vue-from-cdn)
-- [The Application Instance](https://vuejs.org/guide/essentials/application.html#the-application-instance)
+- [Quick Start](https://vuejs.org/guide/quick-start.html)
