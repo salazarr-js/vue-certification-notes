@@ -17,19 +17,19 @@ console.log(count.value) // 0
 </script>
 ```
 
-> ℹ️ No need to append `.value` when using the ref in the template <br />
-> Refs are automatically unwrapped when used inside templates
+ℹ️ No need to use `.value` inside templates <br/>
+✅ Refs are automatically unwrapped in templates <br/>
 
-### How Vue's reactivity system works.
+### How Vue's Reactivity System Works
 
 ✅ Vue uses a **dependency-tracking reactivity system** <br/>
-✅ Vue **tracks** every ref used in templates during render <br/>
-✅ When a ref **changes or mutates**, Vue **triggers** a re-render and updates the DOM <br/>
-✅ Vue **intercepts get and set operations** of object properties using **getters and setters** <br/>
-✅ The `.value` property lets Vue **detect when a ref is accessed or mutated** <br/>
-✅ Vue **tracks** refs in the getter and **triggers updates** in the setter <br/>
-✅ Refs can be **passed to functions** while keeping their **reactivity** <br/>
-✅ ref wraps the inner value in a special object <br/>
+✅ Tracks every ref used in templates during render <br/>
+✅ When a ref **changes**, Vue **triggers** a re-render and updates the DOM <br/>
+✅ Vue **intercepts get/set operations** with **getters and setters** <br/>
+✅ `.value` lets Vue **detect ref access or mutation** <br/>
+✅ Vue **tracks** in the getter and **updates** in the setter <br/>
+✅ Refs can be **passed through functions** while staying reactive <br/>
+✅ `ref()` wraps the value in a special reactive object <br/>
 
 ```ts
 // pseudo code, not actual implementation
@@ -46,7 +46,7 @@ const myRef = {
 }
 ```
 
-- [Reactivity in depth](https://vuejs.org/guide/extras/reactivity-in-depth.html)
+🔗 [Reactivity in Depth](https://vuejs.org/guide/extras/reactivity-in-depth.html)
 
 ### Deep Reactivity
 
@@ -65,16 +65,16 @@ function mutateDeeply() {
 }
 ```
 
-✅ Refs can hold any type value including deeply nested objects, arrays, or built-in data structures like `Map` <br/>
-✅ Non-primitive values are turned into reactive proxies via `reactive()` <br/>
+✅ Refs can hold any type value like objects, arrays, maps, etc. <br/>
+✅ Non-primitive values become reactive proxies via `reactive()` <br/>
 
-- [Reduce Reactivity Overhead for Large Immutable Structures](https://vuejs.org/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures)
-- [Integration with External State Systems](https://vuejs.org/guide/extras/reactivity-in-depth#integration-with-external-state-systems)
+🔗 [Reduce Reactivity Overhead for Large Immutable Structures](https://vuejs.org/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures) <br/>
+🔗 [Integration with External State Systems](https://vuejs.org/guide/extras/reactivity-in-depth#integration-with-external-state-systems) <br/>
 
 ### DOM Update Timing
 
 ✅ The DOM updates automatically when reactive state changes <br/>
-✅ Updates are **buffered** until the next tick in the update cycle <br/>  
+⚠️ Updates are **buffered** until the next tick of the update cycle <br/>
 
 ```ts
 import { nextTick } from 'vue'
@@ -82,7 +82,7 @@ import { nextTick } from 'vue'
 async function increment() {
   count.value++
   await nextTick()
-  // Now the DOM is updated
+  // DOM is now updated
 }
 ```
 
@@ -100,19 +100,18 @@ const state = reactive({ count: 0 })
 </button>
 ```
 
-✅ Unlike refs, `reactive()` makes reactive the object itself <br/>
-✅ Vue intercept the access and mutation of all properties of a reactive object <br/>
-✅ Reactive objects are JavaScript Proxies, Vue intercepts <br/>
-✅ converts the object deeply: nested objects are also wrapped with `reactive()` when accessed. <br/>
-✅ reactive is used internally when ref value is an object<br/>
+✅ `reactive()` makes the object itself reactive <br/>
+✅ Vue intercepts all property access and mutations <br/>
+✅ It converts nested objects deeply into proxies <br/>
+✅ Used internally when a ref holds an object <br/>
 
-> [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+🔗 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
 ### Reactive Proxy vs. Original
 
-✅ reactive() value is a proxy of the original object, proxied value and original are diferent <br/>
-✅ mutating the original object wont trigger updates <br/>
-✅ Nested objects inside a reactive object are also proxies <br/>
+✅ `reactive()` returns a **proxy**, not the original object <br/>
+⚠️ Mutating the original object won’t trigger updates <br/>
+✅ Nested objects are also reactive proxies <br/>
 
 ```ts
 const raw = {}
@@ -130,41 +129,35 @@ console.log(reactive(proxy) === proxy) // true
 
 ### Limitations of `reactive()`
 
-✅ limited value types to objects arrays, collections like `Set` and `Map`, doesn't accept primitives <br/>
-✅ cant replace entire object, need to mantain the same reference to the reactive object, or will lost reactivity connection <br/>
-✅ cant destructure the object, will lose reactivity connection<br/>
-✅ ref is recommended as primary api for declaring reactive state<br/>
+⚠️ Works only with objects, arrays, or collections (`Set`, `Map`) — not primitives <br/>
+⚠️ You can’t replace the entire object — must keep the same reference <br/>
+⚠️ Destructuring reactive objects breaks reactivity <br/>
+✨ `ref()` is recommended for most reactive state declarations <br/>
 
 ## Additional Ref Unwrapping Details
 
 ### As Reactive Object Property
 
-✅ A ref is automatically unwrapped when accessed or mutated as a property of a reactive object <br/>
-✅ If a new ref is assigned to a property linked to an existing ref, it will replace the old ref <br/>
+✅ A ref is unwrapped when accessed or mutated as a reactive property <br/>
+⚠️ Assigning a new ref replaces the previous one <br/>
 
 ```ts
 const count = ref(0)
-const state = reactive({
-  count
-})
+const state = reactive({ count })
 
 console.log(state.count) // 0
-
 state.count = 1
 console.log(count.value) // 1
 
 const otherCount = ref(2)
-
 state.count = otherCount
 console.log(state.count) // 2
-// original ref is now disconnected from state.count
-console.log(count.value) // 1
+console.log(count.value) // 1 (disconnected)
 ```
 
 ### Caveat in Arrays and Collections
 
-✅ Array or collection elements aren't unwrapped <br/>
-
+⚠️ Elements in arrays or collections are **not unwrapped** <br/>
 
 ```ts
 const books = reactive([ref('Vue 3 Guide')])
@@ -176,10 +169,9 @@ const map = reactive(new Map([['count', ref(0)]]))
 console.log(map.get('count').value)
 ```
 
-### Caveat when Unwrapping in Templates
+### Caveat When Unwrapping in Templates
 
-✅ Ref unwrapping in templates only applies if the ref is a top-level property in the template render context. <br/>
-
+⚠️ Template ref unwrapping only works for **top-level** refs <br/>
 
 ```ts
 const count = ref(0)
@@ -190,8 +182,9 @@ const object = { id: ref(1) }
 {{ count + 1 }} ✅
 {{ object.id + 1 }} ❌
 ```
-> The rendered result will be [object Object]1 because object.id is not unwrapped when evaluating the expression and remains a ref object
+
+⚠️ The result will be `[object Object]1` because `object.id` isn’t unwrapped inside the expression.
 
 ---
 
-> [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+🔗 [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)

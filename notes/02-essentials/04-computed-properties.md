@@ -27,14 +27,13 @@ const publishedBooksMessage = computed(() => {
 </template>
 ```
 
-✅ for complex logic that includes reactive data <br/>
-✅ computed properties tracks its reactive dependencies <br/>
-✅ expects to be passed a getter function, and the returned value is a computed ref. <br/>
-✅ are also auto-unwrapped in templates <br/>
-✅ computed properties are cached based on their reactive dependencies <br/>
+✅ Use for complex logic involving reactive data <br/>
+✅ Computed properties track their reactive dependencies <br/>
+✅ Expect a getter function and return a computed ref <br/>
+✅ Auto-unwrapped in templates <br/>
+✅ Cached based on reactive dependencies <br/>
 
-
-## Computed Caching vs Methods
+## Computed Caching vs. Methods
 
 ```html
 <p>{{ calculateBooksMessage() }}</p>
@@ -47,20 +46,18 @@ function calculateBooksMessage() {
 }
 ```
 
-✅ A computed property will only re-evaluate when some of its reactive dependencies have changed. <br/>
-✅ In cases where you do not want caching, use a method call instead <br/>
-
+✅ Computed properties re-evaluate **only** when their dependencies change <br/>
+⚙️ Use methods instead when you don’t need caching <br/>
 
 ```ts
-//  This will never update, because Date.now() is not a reactive dependency
+// This will never update, because Date.now() is not reactive
 const now = computed(() => Date.now())
 ```
 
 ## Writable Computed
 
-✅ Computed properties are by default getter-only <br/>
-✅ you can create a writable one by providing both a getter and a setter <br/>
-
+✅ Computed properties are read-only by default <br/>
+⚙️ You can make them writable by adding a getter and setter <br/>
 
 ```ts
 import { ref, computed } from 'vue'
@@ -80,15 +77,19 @@ const fullName = computed({
 
 ## Best Practices
 
-### Getters should be side-effect free
+### Getters Should Be Side-Effect Free
 
-ℹ️ computer getter should only performs pure computations <br />
-❌ dont mutate other state <br />
-❌ dont make async request <br />
-❌ dont mutate the DOM <br />
-✅ its only responsibility should be computing and returning that value <br />
+ℹ️ A computed getter should perform **pure computations only** <br/>
+❌ Don’t mutate state <br/>
+❌ Don’t make async requests <br/>
+❌ Don’t manipulate the DOM <br/>
+✨ Its only role is to **compute and return** a value <br/>
 
-### Avoid mutating computed value
+### Avoid Mutating Computed Values
 
-ℹ️ The returned value from a computed property is derived state. <br />
-⚠️ a computed return value should be treated as read-only and never be mutated <br />
+ℹ️ The returned value from a computed property is **derived state** <br/>
+⚠️ It should be treated as **read-only** and never mutated <br/>
+
+---
+
+🔗 [Computed Properties Guide](https://vuejs.org/guide/essentials/computed.html)

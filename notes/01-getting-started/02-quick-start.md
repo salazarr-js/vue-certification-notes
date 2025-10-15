@@ -6,10 +6,10 @@
 npm create vue@latest
 ```
 
-> ✅ Scaffolds a Vue [**Single Page Application**](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) <br/>
-> ✅ Build setup based on [**Vite**](https://vitejs.dev/) <br/>
-> ✅ Allows using Vue [**Single-File Components**](https://vuejs.org/guide/scaling-up/sfc) (SFCs) <br/>
-> ✅ The generated project uses the [Composition API](https://vuejs.org/guide/introduction#composition-api) via `<script setup>` <br/>
+✅ Creates a Vue [**Single Page Application**](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) <br/>
+ℹ️ Uses [**Vite**](https://vitejs.dev/) as the build setup <br/>
+✅ Supports Vue [**Single-File Components**](https://vuejs.org/guide/scaling-up/sfc) (SFCs) <br/>
+✅ Uses the [Composition API](https://vuejs.org/guide/introduction#composition-api) with `<script setup>` <br/>
 
 ## Using Vue from CDN
 
@@ -17,7 +17,7 @@ npm create vue@latest
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
-### Using the ES Module Build + Import maps
+### Using the ES Module Build + Import Maps
 
 ```html
 <script type="importmap">
@@ -44,10 +44,10 @@ npm create vue@latest
 </script>
 ```
 
-> ✅ No build step involved <br/>
-> ❌ Can't use Single-File Component (SFC) syntax <br/>
-> ⚠️ The `<script setup>` syntax requires build tools. <br/>
+✅ No build step required <br/>
+❌ Single-File Components (SFCs) not supported <br/>
+⚠️ `<script setup>` syntax needs build tools <br/>
 
 ---
 
-> [Quick Start](https://vuejs.org/guide/quick-start.html)
+🔗 [Quick Start](https://vuejs.org/guide/quick-start.html)
