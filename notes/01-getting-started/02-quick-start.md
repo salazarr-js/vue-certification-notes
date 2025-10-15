@@ -50,4 +50,4 @@ npm create vue@latest
 
 ---
 
-- [Quick Start](https://vuejs.org/guide/quick-start.html)
+> [Quick Start](https://vuejs.org/guide/quick-start.html)
